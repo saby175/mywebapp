@@ -1,5 +1,9 @@
 test file 1
 test file 2
+<<<<<<< HEAD
 test file 3
 test file 4
 test file 5
+=======
+test file 3
+>>>>>>> parent of fec30ef... Fifth commit

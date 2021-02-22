@@ -23,6 +23,8 @@ EXPOSE 80
 EXPOSE 8080
 EXPOSE 443
 EXPOSE 3306
+#Copy index file
+COPY ./index.html /var/www/html/index.html
 # Update the default apache site with the config we created.
 ADD apache-config.conf /etc/apache2/sites-enabled/000-default.conf
 # By default start up apache in the foreground, override with /bin/bash for interative.

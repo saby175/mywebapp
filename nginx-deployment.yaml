@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: saby1755/docker-test:43
+        image: saby1755/docker-test:20
         ports:
         - containerPort: 80
 ---

@@ -1,29 +1,36 @@
-<?php
-$servername = "10.12.104.73";
-$username = "mydb";
-$password = "5vihKLtMfqO5HjAB";
-$dbname = "mydb";
-
-#Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-#Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-
-$sql = "SELECT id, firstname, lastname FROM MyGuests";
-$result = mysqli_query($conn, $sql);
-
-if (mysqli_num_rows($result) > 0) {
-#output data of each row
-  while($row = mysqli_fetch_assoc($result)) {
-    echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+<html>
+<head>
+<script>
+function showUser(str) {
+  if (str == "") {
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  } else {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("txtHint").innerHTML = this.responseText;
+      }
+    };
+    xmlhttp.open("GET","getuser.php?q="+str,true);
+    xmlhttp.send();
   }
-} else {
-  echo "0 results";
 }
+</script>
+</head>
+<body>
 
-mysqli_close($conn);
-?>
+<form>
+<select name="users" onchange="showUser(this.value)">
+  <option value="">Select a person:</option>
+  <option value="1">Peter Griffin</option>
+  <option value="2">Lois Griffin</option>
+  <option value="3">Joseph Swanson</option>
+  <option value="4">Glenn Quagmire</option>
+  </select>
+</form>
+<br>
+<div id="txtHint"><b>Person info will be listed here...</b></div>
 
+</body>
+</html>
